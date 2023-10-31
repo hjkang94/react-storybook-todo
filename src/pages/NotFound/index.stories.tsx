@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ToDoListPage } from '.';
+import { NotFound } from '.';
 
 const meta = {
-  title: 'Pages/ToDoListPage',
-  component: ToDoListPage,
-} satisfies Meta<typeof ToDoListPage>;
+  title: 'Pages/NotFound',
+  component: NotFound,
+} satisfies Meta<typeof NotFound>;
 
 export default meta;
 
