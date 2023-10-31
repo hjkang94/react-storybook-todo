@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 import { PageTitle } from 'components/atoms/PageTitle';
 import { ToDoItem } from 'components/organisms/ToDoItem';
 import { Button } from 'components/atoms/Button';
@@ -34,18 +35,36 @@ const ButtonContainer = styled.div`
   z-index: 1;
 `;
 
-export const ToDoList = () => {
+interface Props {
+  readonly toDoList: ReadonlyArray<string>;
+  readonly onDelete?: (toDo: string) => void;
+}
+
+export const ToDoList = ({ toDoList, onDelete }: Props) => {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <Contents>
         <PageTitle title="할 일 목록" />
         <ToDoListContainer>
-          <ToDoItem label="공부하기" />
-          <ToDoItem label="운동하기" />
+          {toDoList.map((toDo) => (
+            <ToDoItem
+              key={toDo}
+              label={toDo}
+              onDelete={() => {
+                if (typeof onDelete === 'function') {
+                  onDelete(toDo);
+                }
+              }}
+            />
+          ))}
         </ToDoListContainer>
       </Contents>
       <ButtonContainer>
-        <Button label="추가" color="#304ffe" />
+        <Button label="추가" color="#304ffe" onClick={() => {
+          navigate('/add')
+        }} />
       </ButtonContainer>
     </Container>
   )

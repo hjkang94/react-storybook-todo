@@ -12,6 +12,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: '공부하기',
+    toDoList: [],
+  },
+}
+
+export const WithToDoList: Story = {
+  args: {
+    toDoList: ['할 일 1', '할 일 2', '할 일 3'],
   },
 }
