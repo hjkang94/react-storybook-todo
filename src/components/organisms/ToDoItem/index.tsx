@@ -1,5 +1,24 @@
-export const ToDoItem = () => {
+import styled from '@emotion/styled';
+import { Label } from 'components/atoms/Label';
+import { Button } from 'components/atoms/Button';
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+`;
+
+interface Props {
+  readonly label: string;
+  readonly onDelete?: () => void;
+}
+
+export const ToDoItem = ({ label, onDelete }: Props) => {
   return (
-    <div>ToDoItem</div>
+    <Container>
+      <Label label={label} />
+      <Button label="삭제" onClick={onDelete} />
+    </Container>
   )
 }
